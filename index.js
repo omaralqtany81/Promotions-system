@@ -1,11 +1,6 @@
-// ============================================
-// Discord Presence Bot - يخلي البوت أونلاين
-// شغّله على Railway.app أو أي سيرفر Node.js
-// ============================================
-
 const { Client, GatewayIntentBits, ActivityType } = require('discord.js');
 
-const BOT_TOKEN = 'MTQ4MDM4MTk1MTM1MjUwNDM3MQ.GACeRh.KJ-psKfWVHnfZ_5rQaEU24GsUUA2_7azQnn7-w';
+const BOT_TOKEN = 'MTQ4MDM4MTk1MTM1MjUwNDM3MQ.G0146R.Psex6wPIgzTWKU0fLSWvOLtnO9YrPp4Teapzz0';
 
 const client = new Client({
   intents: [
@@ -15,15 +10,10 @@ const client = new Client({
 });
 
 client.on('ready', () => {
-  console.log(`✅ Bot online: ${client.user.tag}`);
-  
-  // Set status
+  console.log('Bot online: ' + client.user.tag);
   client.user.setPresence({
-    activities: [{ 
-      name: 'نظام الترقيات',
-      type: ActivityType.Watching 
-    }],
-    status: 'online', // online, idle, dnd
+    activities: [{ name: 'Promotions System', type: ActivityType.Watching }],
+    status: 'online',
   });
 });
 
