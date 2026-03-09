@@ -3288,7 +3288,7 @@ async function dbSaveAllWL(){
     } else {
       await sbFetch('settings','POST',{key:'forum_wl', value: JSON.stringify({data:wlData,counter:wlIdCounter})});
     }
-  }catch(e){console.error('Save WL error',e);}
+  }catch(E){console.error('Save WL error',E);}
 }
 async function dbSaveAllTeams(){
   try{
@@ -3298,7 +3298,7 @@ async function dbSaveAllTeams(){
     } else {
       await sbFetch('settings','POST',{key:'forum_teams', value: JSON.stringify({data:teamData,counter:teamIdCounter})});
     }
-  }catch(e){console.error('Save teams error',e);}
+  }catch(E){console.error('Save teams error',E);}
 }
 async function loadForumData(){
   try{
@@ -3318,7 +3318,7 @@ async function loadForumData(){
       teamData=parsed.data||[];
       teamIdCounter=parsed.counter||teamData.length+1;
     }
-  }catch(e){console.error('Load forum error',e);}
+  }catch(E){console.error('Load forum error',E);}
   renderTagSelects();
   renderWLTable();
   renderTeamTable();
