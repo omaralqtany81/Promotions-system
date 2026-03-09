@@ -1,6 +1,6 @@
 const { Client, GatewayIntentBits, ActivityType } = require('discord.js');
 
-const BOT_TOKEN = 'MTQ4MDM4MTk1MTM1MjUwNDM3MQ.GcCsgx.lVUzDKDIVNF--fjX5VSNGMeNn8YPYahmiiCI3M';
+const BOT_TOKEN = 'MTQ4MDM4MTk1MTM1MjUwNDM3MQ.GQKxRY.Vh3KCr9q5yXidTFU9lTluTaby7jgVb9RrYYW0o';
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
