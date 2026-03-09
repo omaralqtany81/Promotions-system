@@ -1,10 +1,13 @@
 {
   "name": "promotion-bot",
   "version": "1.0.0",
-  "description": "Discord presence bot for نظام الترقيات",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "build": "echo skip"
+  },
+  "engines": {
+    "node": "18.x"
   },
   "dependencies": {
     "discord.js": "^14.14.1"
