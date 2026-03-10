@@ -6,6 +6,5 @@ window.ticketsData = [
     "ticketName": "mc・claimed-46",
     "panelName": "Mc Support",
     "transcriptFile": "transcripts/transcript-mcclaimed-46.html",
-    "users": ["<@7221963986357453312>", "<@1350531070222794804>"]
-  }
+"users": ["<@7221963986357453312>", "<@1350531070222794804>"]  }
 ];
