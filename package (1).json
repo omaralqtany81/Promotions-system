@@ -1,0 +1,19 @@
+{
+  "name": "ticket-logging-bot",
+  "version": "1.0.0",
+  "description": "Discord bot for logging ticket transcripts to GitHub",
+  "main": "bot-final.js",
+  "scripts": {
+    "start": "node bot-final.js"
+  },
+  "keywords": ["discord", "bot", "tickets"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^14.14.1",
+    "dotenv": "^16.0.3"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
