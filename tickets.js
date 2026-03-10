@@ -1,6 +1,21 @@
 // بيانات التكتات
 window.ticketsData = [
   {
+    "timestamp": "2026-03-10T20:22:38.165Z",
+    "ticketOwner": "<@1256602196754173993>",
+    "ticketOwnerId": "1256602196754173993",
+    "ticketName": "team・claimed-31",
+    "panelName": "Team Application",
+    "transcriptFile": "transcripts/transcript-teamclaimed-31.html",
+    "users": [
+      "<@1256602196754173993>",
+      "<@939472501359132673>",
+      "<@479258844749496322>",
+      "<@722196398635745312>",
+      "<@282859044593598464>"
+    ]
+  },
+  {
     "timestamp": "2026-03-10T19:35:10.227Z",
     "ticketOwner": "<@1256602196754173993>",
     "ticketOwnerId": "1256602196754173993",
