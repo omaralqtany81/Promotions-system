@@ -1,6 +1,18 @@
 // بيانات التكتات
 window.ticketsData = [
   {
+    "timestamp": "2026-03-11T02:25:41.000Z",
+    "ticketOwner": "<@1350531070222794804>",
+    "ticketOwnerId": "1350531070222794804",
+    "ticketName": "dc・waiting-38",
+    "panelName": "Dc Support",
+    "transcriptFile": "transcripts/transcript-dcwaiting-38.html",
+    "users": [
+      "<@722196398635745312>",
+      "<@1350531070222794804>"
+    ]
+  },
+  {
     "timestamp": "2026-03-11T02:16:51.036Z",
     "ticketOwner": "<@1193148158096707664>",
     "ticketOwnerId": "1193148158096707664",
