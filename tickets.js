@@ -1,6 +1,20 @@
 // بيانات التكتات
 window.ticketsData = [
   {
+    "timestamp": "2026-03-11T21:04:00.442Z",
+    "ticketOwner": "<@1286691096256188471>",
+    "ticketOwnerId": "1286691096256188471",
+    "ticketName": "whitelist・claimed-45",
+    "panelName": "Wihitelist Application",
+    "transcriptFile": "transcripts/transcript-whitelistclaimed-45.html",
+    "users": [
+      "<@722196398635745312>",
+      "<@999714198240112650>",
+      "<@282859044593598464>",
+      "<@1286691096256188471>"
+    ]
+  },
+  {
     "timestamp": "2026-03-11T20:35:57.712Z",
     "ticketOwner": "<@1430204331897917633>",
     "ticketOwnerId": "1430204331897917633",
