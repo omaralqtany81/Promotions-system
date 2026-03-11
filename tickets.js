@@ -1,6 +1,17 @@
 // بيانات التكتات
 window.ticketsData = [
   {
+    "timestamp": "2026-03-11T03:10:21.913Z",
+    "ticketOwner": "<@1407437173875015822>",
+    "ticketOwnerId": "1407437173875015822",
+    "ticketName": "mc・waiting-62",
+    "panelName": "Mc Support",
+    "transcriptFile": "transcripts/transcript-mcwaiting-62.html",
+    "users": [
+      "<@722196398635745312>"
+    ]
+  },
+  {
     "timestamp": "2026-03-11T02:25:41.000Z",
     "ticketOwner": "<@1350531070222794804>",
     "ticketOwnerId": "1350531070222794804",
