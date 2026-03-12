@@ -1,6 +1,20 @@
 // بيانات التكتات
 window.ticketsData = [
   {
+    "timestamp": "2026-03-12T18:07:05.077Z",
+    "ticketOwner": "<@1330898742110457962>",
+    "ticketOwnerId": "1330898742110457962",
+    "ticketName": "report・waiting-7",
+    "panelName": "General Report",
+    "transcriptFile": "transcripts/transcript-reportwaiting-7.html",
+    "users": [
+      "<@1330898742110457962>",
+      "<@794290257243406348>",
+      "<@722196398635745312>",
+      "<@1190305586710073427>"
+    ]
+  },
+  {
     "timestamp": "2026-03-12T17:17:53.905Z",
     "ticketOwner": "<@1035905580449148959>",
     "ticketOwnerId": "1035905580449148959",
