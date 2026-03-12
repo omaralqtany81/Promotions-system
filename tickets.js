@@ -1,6 +1,21 @@
 // بيانات التكتات
 window.ticketsData = [
   {
+    "timestamp": "2026-03-12T00:23:45.775Z",
+    "ticketOwner": "<@1162350243552170044>",
+    "ticketOwnerId": "1162350243552170044",
+    "ticketName": "hadi-vex",
+    "panelName": "Mc Support",
+    "transcriptFile": "transcripts/transcript-hadi-vex.html",
+    "users": [
+      "<@1162350243552170044>",
+      "<@1035639071114018927>",
+      "<@604294965182464010>",
+      "<@722196398635745312>",
+      "<@794290257243406348>"
+    ]
+  },
+  {
     "timestamp": "2026-03-11T23:44:23.994Z",
     "ticketOwner": "<@1003237523264372846>",
     "ticketOwnerId": "1003237523264372846",
