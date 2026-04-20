@@ -4139,10 +4139,12 @@ body {
 }
 
 /* Interactive Hover States (Next.js feeling) */
-.card:hover, .role-btn:hover, .task-card:hover {
+.card:hover, .role-btn:hover, .task-card:hover, .rank-row-item:hover {
   transform: translateY(-4px) scale(1.01) !important;
-  border-color: rgba(255,255,255,0.3) !important;
-  box-shadow: 0 20px 40px -10px rgba(0,0,0,0.8), 0 0 15px rgba(255,255,255,0.05) !important;
+  border-color: rgba(255,255,255,0.4) !important;
+  box-shadow: 0 20px 40px -10px rgba(0,0,0,0.8), 0 0 25px rgba(255,255,255,0.08) !important;
+  filter: brightness(1.15) !important;
+  opacity: 0.9 !important;
   z-index: 10;
 }
 
@@ -7843,12 +7845,12 @@ const isStaffManager=()=>isAdmin()
 const isDepartment=()=>isExtra()
 
 const REPORT_REVIEWER_ROLES = {
-  // Founder, Manager, Developer, OP STAFF, Department Manager
-  both: ['1487152572207861870', '1487152882074521771', '1487152873048641677', '1337490826326048922', '1487152897773797637'],
-  // DC Leader, DC Department, Helper
-  dcOnly: ['1487152904824422521', '1487152917763981574', '1487152911472394401'],
-  // MC Department
-  mcOnly: ['1487195246608646275']
+  // OP STAFF, Opex Founder, Opex Manager, Opex Developer, Department Manager
+  both: ['1337490826326048922', '1487152572207861870', '1487152882074521771', '1487152873048641677', '1487152897773797637'],
+  // DC Leader, DC Department
+  dcOnly: ['1487152904824422521', '1487152917763981574'],
+  // MC Leader, MC Department
+  mcOnly: ['1487152923824885860', '1487195246608646275']
 };
 
 function canReviewReports(section) {
@@ -11838,11 +11840,25 @@ async function loadFromDB(){
         history = newHistory;
       }
     }
+    const NEW_RANKS = [
+      { name: 'Supreme', emoji: '👑', min: 1000, max: 99999, color: '#ff0000', perks: 'كل الصلاحيات + إدارة عليا', class: 'rank-1' },
+      { name: 'Ancient', emoji: '🏺', min: 750, max: 999, color: '#ff6600', perks: 'دعم فني مباشر + مهام خاصة', class: 'rank-3' },
+      { name: 'Reference', emoji: '📜', min: 500, max: 749, color: '#ff9900', perks: 'أولوية قصوى + مراجعة تقارير', class: 'rank-4' },
+      { name: 'Delegate', emoji: '🎖️', min: 200, max: 499, color: '#00ff00', perks: 'أولوية دعم + مهام ميدانية', class: 'rank-5' },
+      { name: 'Guardian', emoji: '🛡️', min: 65, max: 199, color: '#00ccff', perks: 'دعم أساسي + حماية السيرفر', class: 'rank-2' },
+      { name: 'Vanguard', emoji: '⚔️', min: 0, max: 64, color: '#3498db', perks: 'رتبة البداية', class: 'rank-6' }
+    ];
+    RANKS = NEW_RANKS;
+    console.log('💎 Forced Premium Ranks Loaded:', RANKS.length);
+
+    // Skip DB values for ranks to keep the new hierarchy consistent
+    /*
     if(Array.isArray(ranksJson) && ranksJson.length && ranksJson[0].value){
       try{ RANKS = JSON.parse(ranksJson[0].value); }catch(e){ console.error('Parse ranks_data error',e); }
     } else if(Array.isArray(rnks) && rnks.length){
       RANKS = rnks.map(function(r){ return {name:r.name,emoji:r.emoji,min:r.min_pts,max:r.max_pts,color:r.color,perks:r.perks,class:r.badge_class}; });
     }
+    */
     if(Array.isArray(crit) && crit.length)
       CRITERIA = crit.map(function(r){ return {name:r.name,icon:r.icon,desc:r.descr,items:JSON.parse(r.items_json)}; });
     
@@ -15695,34 +15711,30 @@ async function confirmTaskComplete() {
 }
 
 const DEFAULT_ADMIN_ROLES = [
-  { id: '1466555953993351483', name: 'Ceo staff', color: '#ff0000', priority: 1, enabled: true },
-  { id: '1466554785200210236', name: 'Founder', color: '#ff0000', priority: 2, enabled: true },
-  { id: '1466925560818172090', name: 'Head developer', color: '#ff6600', priority: 3, enabled: true },
-  { id: '1471552881244246201', name: 'Dev', color: '#ff6600', priority: 4, enabled: true },
-  { id: '1466918930269602003', name: 'Devloper', color: '#ff6600', priority: 5, enabled: true },
-  { id: '1476434574258077706', name: 'staff mng', color: '#ffaa00', priority: 6, enabled: true },
-  { id: '1478769947168608417', name: 'Department mng', color: '#ffaa00', priority: 7, enabled: true },
-  { id: '1467499710779752635', name: 'Event mng', color: '#ffaa00', priority: 8, enabled: true },
-  { id: '1479230996120469625', name: 'Support mng', color: '#ffaa00', priority: 9, enabled: true },
-  { id: '1479223841120190606', name: 'Rank mng', color: '#ffaa00', priority: 10, enabled: true },
-  { id: '1479223956467875911', name: 'Team mng', color: '#ffaa00', priority: 11, enabled: true },
-  { id: '1477668686146965525', name: 'Mod', color: '#00ff00', priority: 12, enabled: true },
-  { id: '1481911501135810723', name: 'Supreme', color: '#00ff00', priority: 13, enabled: true },
-  { id: '1479224320969670807', name: 'Helper', color: '#00ccff', priority: 14, enabled: true },
-  { id: '1481913892593471510', name: 'Ancient', color: '#00ccff', priority: 15, enabled: true },
-  { id: '1481916764462776410', name: 'Delegate', color: '#00ccff', priority: 16, enabled: true },
-  { id: '1481915417705447535', name: 'Reference', color: '#00ccff', priority: 17, enabled: true },
-  { id: '1481917412742791249', name: 'Guardian', color: '#00ccff', priority: 18, enabled: true },
-  { id: '1481918050306359387', name: 'Vanguard', color: '#00ccff', priority: 19, enabled: true },
-  { id: '1466918966340358144', name: 'Staff', color: '#3498db', priority: 20, enabled: true },
-  { id: '1474521171390238962', name: 'Trial staff', color: '#3498db', priority: 21, enabled: true },
-  { id: '1471543000336171150', name: 'Dev staff', color: '#9b59b6', priority: 22, enabled: true },
-  { id: '1479233213418442752', name: 'Event staff', color: '#9b59b6', priority: 23, enabled: true },
-  { id: '1479222723124269156', name: 'Apply staff', color: '#9b59b6', priority: 24, enabled: true },
-  { id: '1474098329888755924', name: 'Media staff', color: '#9b59b6', priority: 25, enabled: true },
-  { id: '1474523083430821938', name: 'Dc staff', color: '#9b59b6', priority: 26, enabled: true },
-  { id: '1474523036257353820', name: 'Mc staff', color: '#9b59b6', priority: 27, enabled: true },
-  { id: '1481704566582935652', name: 'Staff vacation', color: '#95a5a6', priority: 28, enabled: true }
+  { id: '1337490826326048922', name: 'OP STAFF', color: '#ff0000', priority: 1, enabled: true },
+  { id: '1489671552730402909', name: 'Secret Team', color: '#9b59b6', priority: 2, enabled: true },
+  { id: '1487152572207861870', name: 'Opex Founder', color: '#ff0000', priority: 3, enabled: true },
+  { id: '1487152882074521771', name: 'Opex Manager', color: '#ff4400', priority: 4, enabled: true },
+  { id: '1487152873048641677', name: 'Opex Developer', color: '#ff8800', priority: 5, enabled: true },
+  { id: '1487152641028128979', name: 'Opex Inverstors', color: '#e67e22', priority: 6, enabled: true },
+  { id: '1487152897773797637', name: 'Department Manager', color: '#f1c40f', priority: 7, enabled: true },
+  { id: '1487152904824422521', name: 'DC Leader', color: '#2ecc71', priority: 8, enabled: true },
+  { id: '1487152907848646787', name: 'Moderator', color: '#27ae60', priority: 9, enabled: true },
+  { id: '1487152911472394401', name: 'Helper', color: '#1abc9c', priority: 10, enabled: true },
+  { id: '1487152913422749980', name: 'Guardian', color: '#00ccff', priority: 11, enabled: true },
+  { id: '1487152917763981574', name: 'DC Department', color: '#3498db', priority: 12, enabled: true },
+  { id: '1487152923824885860', name: 'MC Leader', color: '#2ecc71', priority: 13, enabled: true },
+  { id: '1487152926827876462', name: 'Reference', color: '#00ccff', priority: 14, enabled: true },
+  { id: '1487195243391614997', name: 'Ancient', color: '#00ccff', priority: 15, enabled: true },
+  { id: '1487195244230475958', name: 'Supreme', color: '#00ff00', priority: 16, enabled: true },
+  { id: '1487195245509742682', name: 'Vanguard', color: '#3498db', priority: 17, enabled: true },
+  { id: '1487195246608646275', name: 'MC Department', color: '#3498db', priority: 18, enabled: true },
+  { id: '1487195247430602852', name: 'Hype Manager', color: '#e91e63', priority: 19, enabled: true },
+  { id: '1487195248059879555', name: 'Hype Events', color: '#9b59b6', priority: 20, enabled: true },
+  { id: '1487230361543901224', name: 'Hype Media', color: '#ff00ff', priority: 21, enabled: true },
+  { id: '1487230245487644712', name: 'Hype Department', color: '#9b59b6', priority: 22, enabled: true },
+  { id: '1487195816220430406', name: 'Staff', color: '#3498db', priority: 23, enabled: true },
+  { id: '1487195249817423902', name: 'Trial Staff', color: '#95a5a6', priority: 24, enabled: true }
 ];
 
 const ALL_PERMISSIONS = {
