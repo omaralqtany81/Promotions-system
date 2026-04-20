@@ -15873,13 +15873,32 @@ async function loadAdminRoles() {
     
     if (Array.isArray(res) && res.length && res[0].value) {
       var data = JSON.parse(res[0].value);
-      adminRoles = data.roles || DEFAULT_ADMIN_ROLES;
-      rolePermissions = data.permissions || {};
-      console.log('✅ Admin roles loaded from DB:', adminRoles.length, 'roles');
-      console.log('✅ Permissions loaded:', Object.keys(rolePermissions).length, 'roles have permissions');
       
+      // FORCE RESET: If the current role set is old (doesn't start with OP STAFF), overwrite with new hierarchy
+      if (data.roles && data.roles[0] && data.roles[0].name !== 'OP STAFF') {
+        console.log('🔄 Old roles detected, forcing reset to Opex hierarchy...');
+        adminRoles = JSON.parse(JSON.stringify(DEFAULT_ADMIN_ROLES));
+        rolePermissions = {};
+        
+        // Setup default permissions for the new 24 roles
+        adminRoles.forEach(function(role, idx) {
+          if (idx < 8) { // Give full permissions to Leaders, Founders, Managers, Investors
+            rolePermissions[role.id] = getAllPermissionKeys();
+          } else {
+            rolePermissions[role.id] = [...DEFAULT_STAFF_PERMISSIONS];
+          }
+        });
+        
+        // Persist the new roles to DB immediately
+        setTimeout(function() { saveAdminSettings(); }, 1000);
+      } else {
+        adminRoles = data.roles || DEFAULT_ADMIN_ROLES;
+        rolePermissions = data.permissions || {};
+      }
+      
+      console.log('✅ Admin roles processed:', adminRoles.length, 'roles active');
       try {
-        localStorage.setItem('admin_roles_backup', JSON.stringify(data));
+        localStorage.setItem('admin_roles_backup', JSON.stringify({roles: adminRoles, permissions: rolePermissions}));
       } catch(le) {}
       
     } else {
