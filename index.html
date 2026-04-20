@@ -7839,10 +7839,28 @@ function getNextRank(pts){
 function getRankProg(pts){const r=getRank(pts);if(!r||r.max===r.min)return 100;return Math.min(100,Math.round(((pts-r.min)/(r.max-r.min))*100))}
 function sortedEmps(){return[...employees].sort((a,b)=>b.points-a.points)}
 function empName(id){const e=employees.find(e=>e.id===id);return e?e.name:'غير معروف'}
-const isAdmin=()=>currentUser&&currentUser.role==='admin'
-const isExtra=()=>currentUser&&(currentUser.role==='extra'||currentUser.role==='admin')
-const isStaffManager=()=>isAdmin()
-const isDepartment=()=>isExtra()
+const isAdmin = () => {
+  if (!currentUser) return false;
+  if (currentUser.role === 'admin') return true;
+  if (!currentUser.guildRoles || !Array.isArray(currentUser.guildRoles)) return false;
+  
+  const userRoleIds = currentUser.guildRoles.map(r => r.id || r);
+  const topTierIds = [
+    '1337490826326048922', // OP STAFF
+    '1489671552730402909', // Secret Team
+    '1487152572207861870', // Opex Founder
+    '1487152882074521771', // Opex Manager
+    '1487152873048641677', // Opex Developer
+    '1487152641028128979', // Opex Inverstors
+    '1487152897773797637', // Department Manager
+    '1487152904824422521'  // DC Leader
+  ];
+  return userRoleIds.some(id => topTierIds.includes(id));
+};
+
+const isExtra = () => isAdmin();
+const isStaffManager = () => isAdmin();
+const isDepartment = () => isAdmin();
 
 const REPORT_REVIEWER_ROLES = {
   // OP STAFF, Opex Founder, Opex Manager, Opex Developer, Department Manager
